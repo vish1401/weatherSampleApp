@@ -22,9 +22,6 @@ export default class App extends Component {
       try {
         let response = await fetch(`http://api.weatherapi.com/v1/current.json?key=f83519d24eb24d0abe5125304212707&q=${this.state.countryName}&aqi=no`);
         const json = await response.json();
-        console.log('response--getWeather-', response)
-        console.log('json--getWeather-', json)
-
         this.setState({ weatherData: json.current });
       } catch (error) {
         console.log(error);
@@ -42,9 +39,6 @@ export default class App extends Component {
       try {
         let response = await fetch(`http://api.weatherapi.com/v1/sports.json?key=f83519d24eb24d0abe5125304212707&q=${this.state.countryName}`);
         const json = await response.json();
-        console.log('response--getSport-', response)
-        console.log('json--getSport-', json)
-
         this.setState({ sportData: json.football });
       } catch (error) {
         console.log(error);
@@ -58,7 +52,6 @@ export default class App extends Component {
 
   renderView() {
     if (this.state.click == 'weather' && this.state.weatherData) {
-      console.log('this.state.weatherData---', this.state.weatherData)
       return (
         <View style={{ marginTop: 40, alignSelf: 'center' }}>
           <Text style={{ fontSize: 20 }}>{this.state.weatherData.condition.text}</Text>
